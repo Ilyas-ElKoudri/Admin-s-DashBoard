@@ -1,0 +1,51 @@
+﻿using ECommerceApi.Data;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+// The order of middleware is crucial for proper request processing
+
+// 1. Exception Handling (should be first to catch any errors)
+if (app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/error");
+    // Development-specific middleware
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+else
+{
+    app.UseExceptionHandler("/error");
+    // The default HSTS value is 30 days
+    app.UseHsts();
+}
+
+// 2. HTTPS Redirection (security)
+app.UseHttpsRedirection();
+
+// 3. Static Files (if any)
+app.UseStaticFiles();
+
+// 4. Routing (set up before authentication/authorization)
+app.UseRouting();
+
+// 5. Authentication (must come before Authorization)
+app.UseAuthentication();
+
+// 6. Authorization
+app.UseAuthorization();
+
+// 7. Endpoint Mapping (should be one of the last items)
+app.MapControllers();
+
+app.Run();

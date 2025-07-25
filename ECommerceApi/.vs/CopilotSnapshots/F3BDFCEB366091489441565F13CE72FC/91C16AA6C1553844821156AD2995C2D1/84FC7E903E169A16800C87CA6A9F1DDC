@@ -1,0 +1,164 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ECommerceApi.Data;
+using ECommerceApi.Models;
+
+namespace ECommerceApi.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CartController : ControllerBase
+    {
+        private readonly ApplicationDbContext _context;
+        private readonly ILogger<CartController> _logger;
+
+        public CartController(ApplicationDbContext context, ILogger<CartController> logger)
+        {
+            _context = context;
+            _logger = logger;
+        }
+
+        // GET: api/Cart/user/{userId}
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<Cart>> GetCart(int userId)
+        {
+            var cart = await _context.Carts
+                .Include(c => c.Items)
+                .ThenInclude(i => i.Product)
+                .FirstOrDefaultAsync(c => c.UserId == userId);
+
+            if (cart == null)
+            {
+                cart = new Cart { UserId = userId };
+                _context.Carts.Add(cart);
+                await _context.SaveChangesAsync();
+            }
+
+            return cart;
+        }
+
+        // POST: api/Cart/addItem
+        [HttpPost("addItem")]
+        public async Task<ActionResult<CartItem>> AddItemToCart(int userId, int productId, int quantity)
+        {
+            var cart = await _context.Carts
+                .Include(c => c.Items)
+                .FirstOrDefaultAsync(c => c.UserId == userId);
+
+            if (cart == null)
+            {
+                cart = new Cart { UserId = userId };
+                _context.Carts.Add(cart);
+            }
+
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null)
+            {
+                return NotFound("Product not found");
+            }
+
+            var existingItem = cart.Items.FirstOrDefault(i => i.ProductId == productId);
+            if (existingItem != null)
+            {
+                existingItem.Quantity += quantity;
+                existingItem.UnitPrice = product.Price;
+            }
+            else
+            {
+                var cartItem = new CartItem
+                {
+                    CartId = cart.Id,
+                    ProductId = productId,
+                    Quantity = quantity,
+                    UnitPrice = product.Price
+                };
+                cart.Items.Add(cartItem);
+            }
+
+            cart.UpdatedAt = DateTime.Now;
+            await _context.SaveChangesAsync();
+
+            return Ok(cart);
+        }
+
+        // PUT: api/Cart/updateItem
+        [HttpPut("updateItem")]
+        public async Task<ActionResult> UpdateCartItem(int userId, int productId, int quantity)
+        {
+            var cart = await _context.Carts
+                .Include(c => c.Items)
+                .FirstOrDefaultAsync(c => c.UserId == userId);
+
+            if (cart == null)
+            {
+                return NotFound("Cart not found");
+            }
+
+            var cartItem = cart.Items.FirstOrDefault(i => i.ProductId == productId);
+            if (cartItem == null)
+            {
+                return NotFound("Item not found in cart");
+            }
+
+            if (quantity <= 0)
+            {
+                cart.Items.Remove(cartItem);
+            }
+            else
+            {
+                cartItem.Quantity = quantity;
+            }
+
+            cart.UpdatedAt = DateTime.Now;
+            await _context.SaveChangesAsync();
+
+            return Ok(cart);
+        }
+
+        // DELETE: api/Cart/removeItem
+        [HttpDelete("removeItem")]
+        public async Task<ActionResult> RemoveCartItem(int userId, int productId)
+        {
+            var cart = await _context.Carts
+                .Include(c => c.Items)
+                .FirstOrDefaultAsync(c => c.UserId == userId);
+
+            if (cart == null)
+            {
+                return NotFound("Cart not found");
+            }
+
+            var cartItem = cart.Items.FirstOrDefault(i => i.ProductId == productId);
+            if (cartItem == null)
+            {
+                return NotFound("Item not found in cart");
+            }
+
+            cart.Items.Remove(cartItem);
+            cart.UpdatedAt = DateTime.Now;
+            await _context.SaveChangesAsync();
+
+            return Ok(cart);
+        }
+
+        // DELETE: api/Cart/clear/{userId}
+        [HttpDelete("clear/{userId}")]
+        public async Task<ActionResult> ClearCart(int userId)
+        {
+            var cart = await _context.Carts
+                .Include(c => c.Items)
+                .FirstOrDefaultAsync(c => c.UserId == userId);
+
+            if (cart == null)
+            {
+                return NotFound("Cart not found");
+            }
+
+            cart.Items.Clear();
+            cart.UpdatedAt = DateTime.Now;
+            await _context.SaveChangesAsync();
+
+            return Ok(cart);
+        }
+    }
+}

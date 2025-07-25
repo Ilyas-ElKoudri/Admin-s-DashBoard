@@ -1,0 +1,20 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ECommerceApi.Models
+{
+    public class Product
+    {
+        public int Id { get; set; }                 // Primary Key
+
+        [Required]
+        [StringLength(100)]
+        public required string Name { get; set; }    // Product Name
+
+        [Range(0.01, double.MaxValue)]
+        public decimal Price { get; set; }          // Price
+
+        public int CategoryId { get; set; }         // Foreign Key
+
+        public Category? Category { get; set; }      // Navigation property - can be null during creation
+    }
+}
