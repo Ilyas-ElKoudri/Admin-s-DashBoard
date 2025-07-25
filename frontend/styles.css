@@ -242,3 +242,47 @@ body, .sidebar, .main-content, .topbar, .app-content {
     border-color: #334155;
     background: #1e293b;
 } 
+
+/* User Cards */
+.user-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: 1px solid #e0e6ed;
+    background: #fff;
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.15);
+}
+
+.user-profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e0e6ed;
+    background: #f4f8fd;
+}
+
+.user-details {
+    text-align: left;
+}
+
+.user-details .fas {
+    width: 16px;
+    text-align: center;
+}
+
+.dark-mode .user-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+.dark-mode .user-profile-img {
+    border-color: #334155;
+    background: #0f172a;
+}
+
+.dark-mode .user-details span {
+    color: #cbd5e1 !important;
+} 

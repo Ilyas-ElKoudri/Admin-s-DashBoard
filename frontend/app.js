@@ -1,4 +1,4 @@
-console.log("Admin's Dashboard frontend loaded."); 
+console.log("Admin's Dashboard frontend loaded.");
 
 const categories = [
     { name: 'Fashion', icon: 'fa-shirt' },
@@ -7,41 +7,12 @@ const categories = [
     { name: 'Technology', icon: 'fa-microchip' }
 ];
 
-function renderCategoriesPage() {
-    const main = document.querySelector('.app-content');
-    main.innerHTML = `
-        <div class="categories-page">
-            <h2 class="mb-4"><i class="fas fa-list me-2"></i>Categories</h2>
-            <div class="row g-4">
-                ${categories.map(cat => `
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <div class="card category-card h-100 text-center p-4 category-clickable" data-category="${cat.name}">
-                            <i class="fas ${cat.icon} fa-2x mb-3"></i>
-                            <h5 class="fw-bold">${cat.name}</h5>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-        </div>
-    `;
-    // Add click listeners to category cards
-    document.querySelectorAll('.category-clickable').forEach(card => {
-        card.addEventListener('click', function() {
-            const category = card.getAttribute('data-category');
-            renderProductsPage(category);
-        });
-    });
-}
-
-function setActiveSidebar(linkText) {
-    document.querySelectorAll('.sidebar .nav-link').forEach(link => {
-        if (link.textContent.trim() === linkText) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-}
+const users = [
+    { name: "Ilyas Kodri", imageUrl: "https://t3.ftcdn.net/jpg/06/99/46/60/360_F_699466075_DaPTBNlNQTOwwjkOiFEoOvzDV0ByXR9E.jpg", email: "ilyasskoudri@mail.com", phoneNumber: "+212 6789334568" },
+    { name: "Siham Beqali", imageUrl: "https://media.licdn.com/dms/image/v2/D4D03AQH_6ajv3kx6sw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718257568018?e=2147483647&v=beta&t=GC1r7KdJxjZNMHCLHmurdIJvyyR2-nkYJ3ovHmcDB9w", email: "siham334@mail.com", phoneNumber: "+212 733434568" },
+    { name: "Oussama Zerhouni", imageUrl: "https://www.mensjournal.com/.image/t_share/MTk2MTM2NTcwNDMxMjg0NzQx/man-taking-selfie.jpg", email: "Elgrade@mail.com", phoneNumber: "+212 6777734568" },
+    { name: "Nawal Laamri", imageUrl: "https://img.freepik.com/premium-photo/woman-wearing-black-head-scarf_777078-39469.jpg", email: "nawal899@mail.com", phoneNumber: "+212 7888334568" }
+];
 
 const products = [
     // Ilyas Kodri's products (5)
@@ -72,6 +43,77 @@ const products = [
     { name: "Cold Pressed Facial Oil (Argan or Rosehip)", imageUrl: "https://www.gosupps.com/media/catalog/product/cache/25/small_image/1500x1650/9df78eab33525d08d6e5fb8d27136e95/6/1/611weDc8loL.jpg", category: "Health & Beauty", listedBy: "Nawal Laamri", avatarUrl: "https://img.freepik.com/premium-photo/woman-wearing-black-head-scarf_777078-39469.jpg", description: "Hydrating and healing oil suitable for all skin types.", price: 179.00, rating: 4.7 },
     { name: "Dehydrated Fruit Snack Packs", imageUrl: "https://m.media-amazon.com/images/I/815qcIw61SL._UF894,1000_QL80_.jpg", category: "Food & Drinks", listedBy: "Nawal Laamri", avatarUrl: "https://img.freepik.com/premium-photo/woman-wearing-black-head-scarf_777078-39469.jpg", description: "Healthy and portable fruit snacks made with no added sugar.", price: 89.00, rating: 4.2 }
 ];
+
+function renderCategoriesPage() {
+    const main = document.querySelector('.app-content');
+    main.innerHTML = `
+        <div class="categories-page">
+            <h2 class="mb-4"><i class="fas fa-list me-2"></i>Categories</h2>
+            <div class="row g-4">
+                ${categories.map(cat => `
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card category-card h-100 text-center p-4 category-clickable" data-category="${cat.name}">
+                            <i class="fas ${cat.icon} fa-2x mb-3"></i>
+                            <h5 class="fw-bold">${cat.name}</h5>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+    // Add click listeners to category cards
+    document.querySelectorAll('.category-clickable').forEach(card => {
+        card.addEventListener('click', function() {
+            const category = card.getAttribute('data-category');
+            renderProductsPage(category);
+        });
+    });
+}
+
+function renderUsersPage() {
+    const main = document.querySelector('.app-content');
+    main.innerHTML = `
+        <div class="users-page">
+            <h2 class="mb-4"><i class="fas fa-users me-2"></i>Users</h2>
+            <div class="row g-4">
+                ${users.map(user => `
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card user-card h-100 p-4">
+                            <div class="text-center mb-3">
+                                <img src="${user.imageUrl}" class="user-profile-img mb-3" alt="${user.name}">
+                                <h5 class="fw-bold mb-2">${user.name}</h5>
+                            </div>
+                            <div class="user-details">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-envelope text-primary me-2"></i>
+                                    <span class="text-muted">${user.email}</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-phone text-primary me-2"></i>
+                                    <span class="text-muted">${user.phoneNumber}</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-user-circle text-primary me-2"></i>
+                                    <span class="text-muted">Active User</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+function setActiveSidebar(linkText) {
+    document.querySelectorAll('.sidebar .nav-link').forEach(link => {
+        if (link.textContent.trim() === linkText) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
 
 function renderProductsPage(category = null) {
     const main = document.querySelector('.app-content');
@@ -160,6 +202,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             } else if (text === 'Products') {
                 renderProductsPage();
+            } else if (text === 'Users') {
+                renderUsersPage();
             }
             // Add more navigation as needed
         });
