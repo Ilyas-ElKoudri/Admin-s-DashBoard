@@ -23,16 +23,35 @@ namespace ECommerceApi.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<object>>> GetProducts()
         {
-            return await _context.Products.ToListAsync();
+            var products = await _context.Products
+                .Include(p => p.User)
+                .Include(p => p.Category)
+                .Select(p => new
+                {
+                    name = p.Name,
+                    imageUrl = p.ImageUrl,
+                    category = p.Category != null ? p.Category.Name : "Unknown",
+                    listedBy = p.User != null ? p.User.Name : "Unknown",
+                    avatarUrl = p.User != null ? p.User.AvatarUrl : "",
+                    description = p.Description,
+                    price = p.Price,
+                    rating = p.Rating
+                })
+                .ToListAsync();
+
+            return Ok(products);
         }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products
+                .Include(p => p.User)
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync(p => p.Id == id);
 
             if (product == null)
             {
@@ -42,8 +61,17 @@ namespace ECommerceApi.Controllers
             return product;
         }
 
+        // POST: api/Products
+        [HttpPost]
+        public async Task<ActionResult<Product>> PostProduct(Product product)
+        {
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+        }
+
         // PUT: api/Products/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
@@ -71,17 +99,6 @@ namespace ECommerceApi.Controllers
             }
 
             return NoContent();
-        }
-
-        // POST: api/Products
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(Product product)
-        {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
         }
 
         // DELETE: api/Products/5

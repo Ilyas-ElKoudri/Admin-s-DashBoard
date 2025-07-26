@@ -21,5 +21,16 @@ namespace ECommerceApi.Models
 
         public int UserId { get; set; }
         public User? User { get; set; } // Seller
+
+        // New fields to match frontend expectations
+        [Required]
+        public string ImageUrl { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(500)]
+        public string Description { get; set; } = string.Empty;
+
+        [Range(0.0, 5.0)]
+        public double Rating { get; set; } = 0.0;
     }
 }

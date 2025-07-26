@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin API Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding: 20px; }
+        .test-section { margin-bottom: 30px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .result { margin-top: 10px; padding: 10px; border-radius: 4px; }
+        .success { background-color: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background-color: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Admin API Test</h1>
+        
+        <div class="test-section">
+            <h3>1. Get Admin Profile</h3>
+            <button class="btn btn-primary" onclick="testGetProfile()">Test Get Profile</button>
+            <div id="getProfileResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>2. Update Admin Profile</h3>
+            <button class="btn btn-warning" onclick="testUpdateProfile()">Test Update Profile</button>
+            <div id="updateProfileResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>3. Update Admin Settings</h3>
+            <button class="btn btn-info" onclick="testUpdateSettings()">Test Update Settings</button>
+            <div id="updateSettingsResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>4. Change Password</h3>
+            <button class="btn btn-danger" onclick="testChangePassword()">Test Change Password</button>
+            <div id="changePasswordResult" class="result"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>5. Admin Login</h3>
+            <button class="btn btn-success" onclick="testLogin()">Test Login</button>
+            <div id="loginResult" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5266/api';
+
+        async function testGetProfile() {
+            const resultDiv = document.getElementById('getProfileResult');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/profile`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<div class="success">✅ Success! Profile loaded:<br><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">❌ Error: ${data.message || response.statusText}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Network Error: ${error.message}</div>`;
+            }
+        }
+
+        async function testUpdateProfile() {
+            const resultDiv = document.getElementById('updateProfileResult');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                const updateData = {
+                    name: "Updated Admin User",
+                    email: "updated.admin@dashboard.com",
+                    phone: "+212 600000001",
+                    avatarUrl: "https://img.freepik.com/premium-vector/avatar-icon002_750950-50.jpg"
+                };
+
+                const response = await fetch(`${API_BASE_URL}/admin/profile`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(updateData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<div class="success">✅ Success! Profile updated:<br><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">❌ Error: ${data.message || response.statusText}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Network Error: ${error.message}</div>`;
+            }
+        }
+
+        async function testUpdateSettings() {
+            const resultDiv = document.getElementById('updateSettingsResult');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                const settingsData = {
+                    darkModeAuto: true
+                };
+
+                const response = await fetch(`${API_BASE_URL}/admin/settings`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(settingsData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<div class="success">✅ Success! Settings updated:<br><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">❌ Error: ${data.message || response.statusText}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Network Error: ${error.message}</div>`;
+            }
+        }
+
+        async function testChangePassword() {
+            const resultDiv = document.getElementById('changePasswordResult');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                const passwordData = {
+                    currentPassword: "admin123",
+                    newPassword: "newadmin123"
+                };
+
+                const response = await fetch(`${API_BASE_URL}/admin/change-password`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(passwordData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<div class="success">✅ Success! Password changed:<br><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">❌ Error: ${data.message || response.statusText}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Network Error: ${error.message}</div>`;
+            }
+        }
+
+        async function testLogin() {
+            const resultDiv = document.getElementById('loginResult');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                const loginData = {
+                    email: "admin@dashboard.com",
+                    password: "admin123"
+                };
+
+                const response = await fetch(`${API_BASE_URL}/admin/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(loginData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `<div class="success">✅ Success! Login successful:<br><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">❌ Error: ${data.message || response.statusText}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">❌ Network Error: ${error.message}</div>`;
+            }
+        }
+    </script>
+</body>
+</html> 

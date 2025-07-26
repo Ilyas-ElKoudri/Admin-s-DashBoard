@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\E L I A S\\Documents\\C# programming\\ASP.NET Core\\ASP.NET Core Web API\\ECommerceApi\\ECommerceApi.csproj": {}
+    "C:\\Users\\E L I A S\\Documents\\Addmi's DashBoard\\ECommerceApi\\ECommerceApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\E L I A S\\Documents\\C# programming\\ASP.NET Core\\ASP.NET Core Web API\\ECommerceApi\\ECommerceApi.csproj": {
+    "C:\\Users\\E L I A S\\Documents\\Addmi's DashBoard\\ECommerceApi\\ECommerceApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\E L I A S\\Documents\\C# programming\\ASP.NET Core\\ASP.NET Core Web API\\ECommerceApi\\ECommerceApi.csproj",
+        "projectUniqueName": "C:\\Users\\E L I A S\\Documents\\Addmi's DashBoard\\ECommerceApi\\ECommerceApi.csproj",
         "projectName": "ECommerceApi",
-        "projectPath": "C:\\Users\\E L I A S\\Documents\\C# programming\\ASP.NET Core\\ASP.NET Core Web API\\ECommerceApi\\ECommerceApi.csproj",
+        "projectPath": "C:\\Users\\E L I A S\\Documents\\Addmi's DashBoard\\ECommerceApi\\ECommerceApi.csproj",
         "packagesPath": "C:\\Users\\E L I A S\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\E L I A S\\Documents\\C# programming\\ASP.NET Core\\ASP.NET Core Web API\\ECommerceApi\\obj\\",
+        "outputPath": "C:\\Users\\E L I A S\\Documents\\Addmi's DashBoard\\ECommerceApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -94,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

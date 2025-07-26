@@ -15,8 +15,8 @@ using Microsoft.EntityFrameworkCore;
     var is C# syntactic sugar{
     Syntactic sugar is a term in programming that means:
     A shorter or easier way to write code that the computer could already understand 
-    but written in a way that’s more readable or convenient for humans.  
-    It doesn’t add new features — it just makes your code look cleaner or simpler} 
+    but written in a way that's more readable or convenient for humans.  
+    It doesn't add new features — it just makes your code look cleaner or simpler} 
 
     it infers the type automatically from the right-hand side.
     var number = 5; // C# treats it as int
@@ -39,6 +39,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Add CORS to allow frontend communication
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 //3. Database Configuration
 
@@ -74,7 +85,18 @@ app.UseSwaggerUI(c =>
 
 //7. Add essential middlewares
 app.UseHttpsRedirection();
+
+// Enable CORS
+app.UseCors("AllowFrontend");
+
 app.UseAuthorization();
 app.MapControllers();
+
+// Initialize database with seed data
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    DbInitializer.Initialize(context);
+}
 
 app.Run();

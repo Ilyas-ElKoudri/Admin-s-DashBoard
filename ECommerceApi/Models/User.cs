@@ -8,7 +8,7 @@ namespace ECommerceApi.Models
         public int Id { get; set; }
 
         [Required, MaxLength(100)]
-        public string? FullName { get; set; }
+        public string Name { get; set; } = string.Empty; // Changed from FullName to Name
 
         [Required, EmailAddress]
         public string? Email { get; set; }
@@ -21,9 +21,14 @@ namespace ECommerceApi.Models
         public bool IsBlocked { get; set; } = false; // permanently blocked
         public DateTime? BlockUntil { get; set; } // temporarily restricted
 
+        // New field to match frontend expectations
+        public string AvatarUrl { get; set; } = string.Empty;
+
+        // Phone number field to match frontend expectations
+        public string PhoneNumber { get; set; } = string.Empty;
+
         // 👇 NEW: List of products this user sells
         public ICollection<Product>? Products { get; set; }
-
 
         // Navigation properties
         public List<Order> Orders { get; set; } = new();
@@ -32,6 +37,5 @@ namespace ECommerceApi.Models
         public List<Message>? Messages { get; set; }
         public List<Message> SentMessages { get; set; } = new();
         public List<Message> ReceivedMessages { get; set; } = new();
-
     }
 }

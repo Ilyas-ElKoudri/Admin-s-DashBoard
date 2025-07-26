@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend API Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Backend API Test</h1>
+        <p>Testing connection to backend at: <code>http://localhost:5266/api</code></p>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary mb-3" onclick="testCategories()">Test Categories API</button>
+                <div id="categoriesResult" class="border p-3 rounded"></div>
+            </div>
+            
+            <div class="col-md-4">
+                <button class="btn btn-success mb-3" onclick="testUsers()">Test Users API</button>
+                <div id="usersResult" class="border p-3 rounded"></div>
+            </div>
+            
+            <div class="col-md-4">
+                <button class="btn btn-info mb-3" onclick="testProducts()">Test Products API</button>
+                <div id="productsResult" class="border p-3 rounded"></div>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <button class="btn btn-warning" onclick="testAll()">Test All APIs</button>
+            <div id="allResult" class="border p-3 rounded mt-3"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'http://localhost:5266/api';
+
+        async function testCategories() {
+            const resultDiv = document.getElementById('categoriesResult');
+            resultDiv.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/Categories`);
+                const data = await response.json();
+                resultDiv.innerHTML = `
+                    <h6>Categories API Response:</h6>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
+            }
+        }
+
+        async function testUsers() {
+            const resultDiv = document.getElementById('usersResult');
+            resultDiv.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/Users`);
+                const data = await response.json();
+                resultDiv.innerHTML = `
+                    <h6>Users API Response:</h6>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
+            }
+        }
+
+        async function testProducts() {
+            const resultDiv = document.getElementById('productsResult');
+            resultDiv.innerHTML = '<p>Testing...</p>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/Products`);
+                const data = await response.json();
+                resultDiv.innerHTML = `
+                    <h6>Products API Response:</h6>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
+            }
+        }
+
+        async function testAll() {
+            const resultDiv = document.getElementById('allResult');
+            resultDiv.innerHTML = '<p>Testing all APIs...</p>';
+            
+            try {
+                const [categoriesRes, usersRes, productsRes] = await Promise.all([
+                    fetch(`${API_BASE_URL}/Categories`),
+                    fetch(`${API_BASE_URL}/Users`),
+                    fetch(`${API_BASE_URL}/Products`)
+                ]);
+                
+                const categories = await categoriesRes.json();
+                const users = await usersRes.json();
+                const products = await productsRes.json();
+                
+                resultDiv.innerHTML = `
+                    <h6>All APIs Working!</h6>
+                    <p><strong>Categories:</strong> ${categories.length} items</p>
+                    <p><strong>Users:</strong> ${users.length} items</p>
+                    <p><strong>Products:</strong> ${products.length} items</p>
+                    <p class="text-success">✅ Backend is ready for frontend integration!</p>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html> 

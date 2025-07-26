@@ -20,14 +20,21 @@ namespace ECommerceApi.Controllers
         }
 
         // GET: api/Users
-        // ✅ Returns all users including their listed Products and Orders
+        // ✅ Returns all users in frontend-expected format
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<object>>> GetUsers()
         {
-            return await _context.Users
-                .Include(u => u.Products)
-                .Include(u => u.Orders)
+            var users = await _context.Users
+                .Select(u => new
+                {
+                    name = u.Name,
+                    imageUrl = u.AvatarUrl,
+                    email = u.Email,
+                    phoneNumber = u.PhoneNumber
+                })
                 .ToListAsync();
+
+            return Ok(users);
         }
 
         // GET: api/Users/5
@@ -60,7 +67,7 @@ namespace ECommerceApi.Controllers
                 return NotFound();
 
             // Only update editable fields
-            user.FullName = updatedUser.FullName;
+            user.Name = updatedUser.Name;
             user.Email = updatedUser.Email;
             user.Role = updatedUser.Role;
 
@@ -120,8 +127,8 @@ namespace ECommerceApi.Controllers
             return Ok(new
             {
                 message = days == null
-                    ? $"User {user.FullName} has been permanently blocked."
-                    : $"User {user.FullName} has been restricted from selling until {user.BlockUntil}."
+                    ? $"User {user.Name} has been permanently blocked."
+                    : $"User {user.Name} has been restricted from selling until {user.BlockUntil}."
             });
         }
 
@@ -146,7 +153,7 @@ namespace ECommerceApi.Controllers
             _context.Messages.Add(message);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = $"Message sent to {user.FullName}" });
+            return Ok(new { message = $"Message sent to {user.Name}" });
         }
 
         private bool UserExists(int id) => _context.Users.Any(e => e.Id == id);
