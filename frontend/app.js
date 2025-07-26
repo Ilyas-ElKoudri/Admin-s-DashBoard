@@ -128,19 +128,19 @@ async function fetchUsers() {
         } else {
             console.warn('Failed to fetch users, using static data');
             users = [
-                { name: "Ilyas Kodri", imageUrl: "https://t3.ftcdn.net/jpg/06/99/46/60/360_F_699466075_DaPTBNlNQTOwwjkOiFEoOvzDV0ByXR9E.jpg", email: "ilyasskoudri@mail.com", phoneNumber: "+212 6789334568", isBlocked: false, isRestricted: false },
-                { name: "Siham Beqali", imageUrl: "https://media.licdn.com/dms/image/v2/D4D03AQH_6ajv3kx6sw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718257568018?e=2147483647&v=beta&t=GC1r7KdJxjZNMHCLHmurdIJvyyR2-nkYJ3ovHmcDB9w", email: "siham334@mail.com", phoneNumber: "+212 733434568", isBlocked: false, isRestricted: false },
-                { name: "Oussama Zerhouni", imageUrl: "https://www.mensjournal.com/.image/t_share/MTk2MTM2NTcwNDMxMjg0NzQx/man-taking-selfie.jpg", email: "Elgrade@mail.com", phoneNumber: "+212 6777734568", isBlocked: false, isRestricted: false },
-                { name: "Nawal Laamri", imageUrl: "https://img.freepik.com/premium-photo/woman-wearing-black-head-scarf_777078-39469.jpg", email: "nawal899@mail.com", phoneNumber: "+212 7888334568", isBlocked: false, isRestricted: false }
+                { id: 1, name: "Ilyas Kodri", imageUrl: "https://t3.ftcdn.net/jpg/06/99/46/60/360_F_699466075_DaPTBNlNQTOwwjkOiFEoOvzDV0ByXR9E.jpg", email: "ilyasskoudri@mail.com", phoneNumber: "+212 6789334568", isBlocked: false, isRestricted: false },
+                { id: 2, name: "Siham Beqali", imageUrl: "https://media.licdn.com/dms/image/v2/D4D03AQH_6ajv3kx6sw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718257568018?e=2147483647&v=beta&t=GC1r7KdJxjZNMHCLHmurdIJvyyR2-nkYJ3ovHmcDB9w", email: "siham334@mail.com", phoneNumber: "+212 733434568", isBlocked: false, isRestricted: false },
+                { id: 3, name: "Oussama Zerhouni", imageUrl: "https://www.mensjournal.com/.image/t_share/MTk2MTM2NTcwNDMxMjg0NzQx/man-taking-selfie.jpg", email: "Elgrade@mail.com", phoneNumber: "+212 6777734568", isBlocked: false, isRestricted: false },
+                { id: 4, name: "Nawal Laamri", imageUrl: "https://img.freepik.com/premium-photo/woman-wearing-black-head-scarf_777078-39469.jpg", email: "nawal899@mail.com", phoneNumber: "+212 7888334568", isBlocked: false, isRestricted: false }
             ];
         }
     } catch (error) {
         console.warn('Error fetching users, using static data:', error);
         users = [
-            { name: "Ilyas Kodri", imageUrl: "https://t3.ftcdn.net/jpg/06/99/46/60/360_F_699466075_DaPTBNlNQTOwwjkOiFEoOvzDV0ByXR9E.jpg", email: "ilyasskoudri@mail.com", phoneNumber: "+212 6789334568", isBlocked: false, isRestricted: false },
-            { name: "Siham Beqali", imageUrl: "https://media.licdn.com/dms/image/v2/D4D03AQH_6ajv3kx6sw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718257568018?e=2147483647&v=beta&t=GC1r7KdJxjZNMHCLHmurdIJvyyR2-nkYJ3ovHmcDB9w", email: "siham334@mail.com", phoneNumber: "+212 733434568", isBlocked: false, isRestricted: false },
-            { name: "Oussama Zerhouni", imageUrl: "https://www.mensjournal.com/.image/t_share/MTk2MTM2NTcwNDMxMjg0NzQx/man-taking-selfie.jpg", email: "Elgrade@mail.com", phoneNumber: "+212 6777734568", isBlocked: false, isRestricted: false },
-            { name: "Nawal Laamri", imageUrl: "https://img.freepik.com/premium-photo/woman-wearing-black-head-scarf_777078-39469.jpg", email: "nawal899@mail.com", phoneNumber: "+212 7888334568", isBlocked: false, isRestricted: false }
+            { id: 1, name: "Ilyas Kodri", imageUrl: "https://t3.ftcdn.net/jpg/06/99/46/60/360_F_699466075_DaPTBNlNQTOwwjkOiFEoOvzDV0ByXR9E.jpg", email: "ilyasskoudri@mail.com", phoneNumber: "+212 6789334568", isBlocked: false, isRestricted: false },
+            { id: 2, name: "Siham Beqali", imageUrl: "https://media.licdn.com/dms/image/v2/D4D03AQH_6ajv3kx6sw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1718257568018?e=2147483647&v=beta&t=GC1r7KdJxjZNMHCLHmurdIJvyyR2-nkYJ3ovHmcDB9w", email: "siham334@mail.com", phoneNumber: "+212 733434568", isBlocked: false, isRestricted: false },
+            { id: 3, name: "Oussama Zerhouni", imageUrl: "https://www.mensjournal.com/.image/t_share/MTk2MTM2NTcwNDMxMjg0NzQx/man-taking-selfie.jpg", email: "Elgrade@mail.com", phoneNumber: "+212 6777734568", isBlocked: false, isRestricted: false },
+            { id: 4, name: "Nawal Laamri", imageUrl: "https://img.freepik.com/premium-photo/woman-wearing-black-head-scarf_777078-39469.jpg", email: "nawal899@mail.com", phoneNumber: "+212 7888334568", isBlocked: false, isRestricted: false }
         ];
     }
 }
@@ -216,9 +216,26 @@ async function initializeData() {
 }
 
 // Dashboard rendering function
-function renderDashboardPage() {
+async function renderDashboardPage() {
     const totalProducts = products.length;
     const totalUsers = users.length;
+    
+    // Fetch order statistics from backend
+    let totalOrders = 16; // Default fallback
+    let totalDelivered = 4; // Default fallback
+    let totalConfirmed = 8; // Default fallback
+    
+    try {
+        const response = await fetch(`${API_BASE_URL}/orders/statistics`);
+        if (response.ok) {
+            const stats = await response.json();
+            totalOrders = stats.totalOrders;
+            totalDelivered = stats.deliveredOrders;
+            totalConfirmed = stats.confirmedOrders;
+        }
+    } catch (error) {
+        console.warn('Failed to fetch order statistics, using default values:', error);
+    }
     
     // Get top-rated products (sorted by rating, then by price for tie-breaking)
     const topRatedProducts = [...products]
@@ -269,6 +286,39 @@ function renderDashboardPage() {
                 <div class="col-md-6 col-lg-3 mb-3">
                     <div class="stat-card">
                         <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">${totalOrders}</h3>
+                            <p class="stat-label">Total Orders</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">${totalConfirmed}</h3>
+                            <p class="stat-label">Confirmed Orders</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">${totalDelivered}</h3>
+                            <p class="stat-label">Delivered Orders</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-3">
+                    <div class="stat-card">
+                        <div class="stat-icon">
                             <i class="fas fa-tags"></i>
                         </div>
                         <div class="stat-content">
@@ -312,7 +362,7 @@ function renderDashboardPage() {
                                                     <i class="fas fa-star text-warning"></i>
                                                     ${product.rating}
                                                 </span>
-                                                <span class="price">$${product.price}</span>
+                                                <span class="price">DH${product.price}</span>
                                             </div>
                                             <small class="text-muted">${product.category} • ${product.listedBy}</small>
                                         </div>
@@ -346,7 +396,7 @@ function renderDashboardPage() {
                                                     <i class="fas fa-star text-warning"></i>
                                                     ${product.rating}
                                                 </span>
-                                                <span class="price">$${product.price}</span>
+                                                <span class="price">DH${product.price}</span>
                                             </div>
                                             <small class="text-muted">${product.category} • ${product.listedBy}</small>
                                         </div>
@@ -457,57 +507,146 @@ function renderUsersPage() {
 }
 
 // User management functions
-function blockUser(userName) {
+async function blockUser(userName) {
     if (confirm(`Are you sure you want to block ${userName}?`)) {
         const user = users.find(u => u.name === userName);
         if (user) {
-            user.isBlocked = true;
-            showNotification(`User ${userName} has been blocked successfully!`, 'success');
-            renderUsersPage(); // Refresh the page
+            try {
+                const response = await fetch(`${API_BASE_URL}/users/${user.id}/block`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    showNotification(result.message || `User ${userName} has been blocked successfully!`, 'success');
+                    await fetchUsers(); // Refresh user data
+                    renderUsersPage(); // Refresh the page
+                } else {
+                    const errorData = await response.json();
+                    showNotification(errorData.message || 'Failed to block user', 'danger');
+                }
+            } catch (error) {
+                console.error('Error blocking user:', error);
+                showNotification('Network error while blocking user', 'danger');
+            }
         }
     }
 }
 
-function unblockUser(userName) {
+async function unblockUser(userName) {
     if (confirm(`Are you sure you want to unblock ${userName}?`)) {
         const user = users.find(u => u.name === userName);
         if (user) {
-            user.isBlocked = false;
-            showNotification(`User ${userName} has been unblocked successfully!`, 'success');
-            renderUsersPage(); // Refresh the page
+            try {
+                const response = await fetch(`${API_BASE_URL}/users/${user.id}/unblock`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    showNotification(result.message || `User ${userName} has been unblocked successfully!`, 'success');
+                    await fetchUsers(); // Refresh user data
+                    renderUsersPage(); // Refresh the page
+                } else {
+                    const errorData = await response.json();
+                    showNotification(errorData.message || 'Failed to unblock user', 'danger');
+                }
+            } catch (error) {
+                console.error('Error unblocking user:', error);
+                showNotification('Network error while unblocking user', 'danger');
+            }
         }
     }
 }
 
-function restrictUser(userName) {
+async function restrictUser(userName) {
     if (confirm(`Are you sure you want to restrict ${userName}?`)) {
         const user = users.find(u => u.name === userName);
         if (user) {
-            user.isRestricted = true;
-            showNotification(`User ${userName} has been restricted successfully!`, 'success');
-            renderUsersPage(); // Refresh the page
+            try {
+                const response = await fetch(`${API_BASE_URL}/users/${user.id}/restrict`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    showNotification(result.message || `User ${userName} has been restricted successfully!`, 'success');
+                    await fetchUsers(); // Refresh user data
+                    renderUsersPage(); // Refresh the page
+                } else {
+                    const errorData = await response.json();
+                    showNotification(errorData.message || 'Failed to restrict user', 'danger');
+                }
+            } catch (error) {
+                console.error('Error restricting user:', error);
+                showNotification('Network error while restricting user', 'danger');
+            }
         }
     }
 }
 
-function unrestrictUser(userName) {
+async function unrestrictUser(userName) {
     if (confirm(`Are you sure you want to remove restrictions from ${userName}?`)) {
         const user = users.find(u => u.name === userName);
         if (user) {
-            user.isRestricted = false;
-            showNotification(`Restrictions have been removed from ${userName}!`, 'success');
-            renderUsersPage(); // Refresh the page
+            try {
+                const response = await fetch(`${API_BASE_URL}/users/${user.id}/unrestrict`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    showNotification(result.message || `Restrictions have been removed from ${userName}!`, 'success');
+                    await fetchUsers(); // Refresh user data
+                    renderUsersPage(); // Refresh the page
+                } else {
+                    const errorData = await response.json();
+                    showNotification(errorData.message || 'Failed to unrestrict user', 'danger');
+                }
+            } catch (error) {
+                console.error('Error unrestricting user:', error);
+                showNotification('Network error while unrestricting user', 'danger');
+            }
         }
     }
 }
 
-function deleteUser(userName) {
+async function deleteUser(userName) {
     if (confirm(`Are you sure you want to delete ${userName}? This action cannot be undone!`)) {
-        const userIndex = users.findIndex(u => u.name === userName);
-        if (userIndex !== -1) {
-            users.splice(userIndex, 1);
-            showNotification(`User ${userName} has been deleted successfully!`, 'success');
-            renderUsersPage(); // Refresh the page
+        const user = users.find(u => u.name === userName);
+        if (user) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/users/${user.id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                if (response.ok) {
+                    showNotification(`User ${userName} has been deleted successfully!`, 'success');
+                    await fetchUsers(); // Refresh user data
+                    renderUsersPage(); // Refresh the page
+                } else {
+                    const errorData = await response.json();
+                    showNotification(errorData.message || 'Failed to delete user', 'danger');
+                }
+            } catch (error) {
+                console.error('Error deleting user:', error);
+                showNotification('Network error while deleting user', 'danger');
+            }
         }
     }
 }
@@ -841,7 +980,7 @@ function renderProductsPage(category = null) {
                                 </div>
                                 <p class="card-text mb-2">${product.description}</p>
                                 <div class="d-flex justify-content-between align-items-center mt-2">
-                                    <span class="fw-bold text-primary">$${product.price.toFixed(2)}</span>
+                                    <span class="fw-bold text-primary">DH${product.price.toFixed(2)}</span>
                                     <span class="badge bg-warning text-dark"><i class="fas fa-star"></i> ${product.rating}</span>
                                 </div>
                             </div>
@@ -895,7 +1034,7 @@ function renderOrdersPage() {
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between mt-2">
-                                <span class="fw-bold text-primary">$${order.product.price.toFixed(2)}</span>
+                                <span class="fw-bold text-primary">DH${order.product.price.toFixed(2)}</span>
                                 <span class="badge bg-warning text-dark"><i class="fas fa-star"></i> ${order.product.rating}</span>
                             </div>
                             <div class="mt-2 small text-muted">Ordered by: <img src="${order.product.avatarUrl}" class="user-avatar me-1" style="width:20px;height:20px;">${order.product.listedBy}</div>
@@ -943,7 +1082,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (text === 'Categories') {
                 renderCategoriesPage();
             } else if (text === 'Dashboard') {
-                renderDashboardPage();
+                renderDashboardPage().catch(error => {
+                    console.error('Error rendering dashboard:', error);
+                    showNotification('Error loading dashboard data', 'danger');
+                });
             } else if (text === 'Products') {
                 renderProductsPage();
             } else if (text === 'Users') {

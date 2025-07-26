@@ -20,6 +20,7 @@ namespace ECommerceApi.Models
 
         public bool IsBlocked { get; set; } = false; // permanently blocked
         public DateTime? BlockUntil { get; set; } // temporarily restricted
+        public bool IsRestricted { get; set; } = false; // restricted access
 
         // New field to match frontend expectations
         public string AvatarUrl { get; set; } = string.Empty;

@@ -11,8 +11,14 @@ body {
     width: 200px;
     min-height: calc(100vh - 88px); /* adjust for top bar height */
     margin-top: 0;
-    border-radius: 0 2rem 2rem 2rem;
+    border-radius: 0 2rem 2rem 0;
     box-shadow: 2px 0 12px rgba(30,64,175,0.08);
+    position: fixed;
+    top: 88px; /* height of top bar */
+    left: 0;
+    z-index: 1000;
+    overflow-y: auto;
+    max-height: calc(100vh - 88px);
 }
 
 .sidebar-header {
@@ -56,11 +62,12 @@ body {
     background: #f4f8fd;
     box-shadow: 0 0 24px rgba(30,64,175,0.04);
     flex: 1;
+    margin-left: 200px; /* width of sidebar */
 }
 
 .app-content {
     background: #fff;
-    border-radius: 1.5rem;
+    border-radius: 0 0 1.5rem 1.5rem;
     box-shadow: 0 2px 12px rgba(30,64,175,0.03);
     min-height: 70vh;
     padding: 1.5rem;
@@ -80,7 +87,7 @@ body.dark-mode {
 .dark-mode .sidebar {
     background: linear-gradient(135deg, #1e293b 80%, #0f172a 100%);
     box-shadow: 2px 0 12px rgba(15,23,42,0.18);
-    border-radius: 0 2rem 2rem 2rem;
+    border-radius: 0 2rem 2rem 0;
 }
 
 .dark-mode .sidebar-header span {
@@ -116,6 +123,7 @@ body.dark-mode {
     background: #181f2a;
     color: #e0e6ed;
     box-shadow: 0 2px 12px rgba(15,23,42,0.10);
+    border-radius: 0 0 1.5rem 1.5rem;
 }
 
 .dark-mode .welcome-message {
@@ -130,7 +138,11 @@ body, .sidebar, .main-content, .topbar, .app-content {
     .sidebar {
         width: 80px;
         padding: 0.8rem 0.3rem;
-        border-radius: 0 1rem 1rem 1rem;
+        border-radius: 0 1rem 1rem 0;
+        position: fixed;
+        top: 88px;
+        left: 0;
+        z-index: 1000;
     }
     .sidebar .nav-link {
         font-size: 0.8rem;
@@ -139,6 +151,7 @@ body, .sidebar, .main-content, .topbar, .app-content {
     }
     .main-content {
         border-radius: 0;
+        margin-left: 80px; /* width of sidebar on mobile */
     }
     .topbar {
         border-radius: 0 0 1rem 1rem;
@@ -146,6 +159,12 @@ body, .sidebar, .main-content, .topbar, .app-content {
     .dashboard-title {
         font-size: 1.5rem;
     }
+}
+
+/* Page Headers - Apply consistent blue color to all page headers */
+h2 {
+    color: #2563eb;
+    font-weight: 600;
 }
 
 .categories-page h2 {
@@ -177,6 +196,11 @@ body, .sidebar, .main-content, .topbar, .app-content {
 .dark-mode .category-card:hover {
     background: #1e293b;
 }
+/* Dark mode support for all page headers */
+.dark-mode h2 {
+    color: #60a5fa;
+}
+
 .dark-mode .categories-page h2 {
     color: #60a5fa;
 }
@@ -518,6 +542,18 @@ body, .sidebar, .main-content, .topbar, .app-content {
 
 .stat-card:nth-child(4) .stat-icon {
     background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.stat-card:nth-child(5) .stat-icon {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.stat-card:nth-child(6) .stat-icon {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.stat-card:nth-child(7) .stat-icon {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
 }
 
 .stat-content {
@@ -972,4 +1008,17 @@ body, .sidebar, .main-content, .topbar, .app-content {
 .dark-mode .orders-page .order-product-img {
     background: #1e293b;
     border-color: #334155;
-} 
+}
+
+/* Dark mode styling for Orders page text elements */
+.dark-mode .orders-page .fw-bold {
+    color: #e0e6ed !important;
+}
+
+.dark-mode .orders-page .text-muted {
+    color: #9ca3af !important;
+}
+
+.dark-mode .orders-page .text-primary {
+    color: #60a5fa !important;
+}

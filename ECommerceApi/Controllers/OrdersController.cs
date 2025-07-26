@@ -28,6 +28,27 @@ namespace ECommerceApi.Controllers
             return await _context.Orders.ToListAsync();
         }
 
+        // GET: api/Orders/statistics
+        // ✅ Returns order statistics for dashboard
+        [HttpGet("statistics")]
+        public async Task<ActionResult<object>> GetOrderStatistics()
+        {
+            var orders = await _context.Orders.ToListAsync();
+            
+            var totalOrders = orders.Count;
+            var confirmedOrders = orders.Count(o => o.Status == "Confirmed");
+            var deliveredOrders = orders.Count(o => o.Status == "Delivered");
+            var pendingOrders = orders.Count(o => o.Status == "Pending" || o.Status == "Not Confirmed");
+
+            return Ok(new
+            {
+                totalOrders,
+                confirmedOrders,
+                deliveredOrders,
+                pendingOrders
+            });
+        }
+
         // GET: api/Orders/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)

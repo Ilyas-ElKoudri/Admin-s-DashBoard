@@ -27,10 +27,13 @@ namespace ECommerceApi.Controllers
             var users = await _context.Users
                 .Select(u => new
                 {
+                    id = u.Id,
                     name = u.Name,
                     imageUrl = u.AvatarUrl,
                     email = u.Email,
-                    phoneNumber = u.PhoneNumber
+                    phoneNumber = u.PhoneNumber,
+                    isBlocked = u.IsBlocked,
+                    isRestricted = u.IsRestricted
                 })
                 .ToListAsync();
 
@@ -130,6 +133,55 @@ namespace ECommerceApi.Controllers
                     ? $"User {user.Name} has been permanently blocked."
                     : $"User {user.Name} has been restricted from selling until {user.BlockUntil}."
             });
+        }
+
+        // PUT: api/Users/5/unblock
+        // ✅ Unblocks a user
+        [HttpPut("{id}/unblock")]
+        public async Task<IActionResult> UnblockUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+                return NotFound();
+
+            user.IsBlocked = false;
+            user.BlockUntil = null;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = $"User {user.Name} has been unblocked successfully." });
+        }
+
+        // PUT: api/Users/5/restrict
+        // ✅ Restricts a user's access
+        [HttpPut("{id}/restrict")]
+        public async Task<IActionResult> RestrictUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+                return NotFound();
+
+            user.IsRestricted = true;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = $"User {user.Name} has been restricted successfully." });
+        }
+
+        // PUT: api/Users/5/unrestrict
+        // ✅ Removes restrictions from a user
+        [HttpPut("{id}/unrestrict")]
+        public async Task<IActionResult> UnrestrictUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+                return NotFound();
+
+            user.IsRestricted = false;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = $"Restrictions have been removed from {user.Name} successfully." });
         }
 
         // POST: api/Users/5/message

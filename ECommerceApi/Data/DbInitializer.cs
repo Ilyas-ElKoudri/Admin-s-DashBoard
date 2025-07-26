@@ -131,6 +131,52 @@ namespace ECommerceApi.Data
                 context.Products.AddRange(products);
                 context.SaveChanges();
             }
+
+            // Initialize Orders
+            if (!context.Orders.Any())
+            {
+                var users = context.Users.ToList();
+                var products = context.Products.ToList();
+                
+                // Create sample orders with different statuses
+                var orders = new List<Order>();
+                
+                // 8 Confirmed orders
+                for (int i = 0; i < 8; i++)
+                {
+                    orders.Add(new Order
+                    {
+                        UserId = users[i % users.Count].Id,
+                        Status = "Confirmed",
+                        OrderDate = DateTime.UtcNow.AddDays(-(i + 1))
+                    });
+                }
+                
+                // 4 Delivered orders
+                for (int i = 0; i < 4; i++)
+                {
+                    orders.Add(new Order
+                    {
+                        UserId = users[i % users.Count].Id,
+                        Status = "Delivered",
+                        OrderDate = DateTime.UtcNow.AddDays(-(i + 5))
+                    });
+                }
+                
+                // 4 Not Confirmed orders
+                for (int i = 0; i < 4; i++)
+                {
+                    orders.Add(new Order
+                    {
+                        UserId = users[i % users.Count].Id,
+                        Status = "Not Confirmed",
+                        OrderDate = DateTime.UtcNow.AddDays(-(i + 10))
+                    });
+                }
+
+                context.Orders.AddRange(orders);
+                context.SaveChanges();
+            }
         }
 
         private static string HashPassword(string password)
