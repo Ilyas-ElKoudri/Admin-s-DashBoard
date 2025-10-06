@@ -54,6 +54,15 @@ This project demonstrates professional full-stack development skills with .NET C
 <!-- TODO: Add screenshots of the application -->
 *Screenshots will be added soon*
 
+---
+
+### 📌 Repository Topics
+
+To improve discoverability, consider adding these topics to the repository:
+`dotnet` `aspnet-core` `csharp` `entity-framework-core` `web-api` `javascript` `bootstrap` `full-stack` `admin-dashboard` `ecommerce` `sql-server` `rest-api`
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Backend
