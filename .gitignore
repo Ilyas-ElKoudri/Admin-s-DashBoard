@@ -120,7 +120,8 @@ appsettings.*.json
 !appsettings.json
 
 # Migration SQL files (if generated)
-*.sql
+# Keep manual migration scripts if needed
+# *.sql
 
 # JetBrains Rider
 .idea/
