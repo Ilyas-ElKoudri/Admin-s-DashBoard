@@ -8,21 +8,19 @@ This application provides a comprehensive management interface for e-commerce op
 
 ## 📸 Screenshots
 
-![dashboard.png](<img width="1350" height="636" alt="dashboard" src="https://github.com/user-attachments/assets/2500b086-7238-494b-89cc-298382c6b14a" />
-)
+<img width="1350" height="636" alt="dashboard" src="https://github.com/user-attachments/assets/ca74b125-e559-4150-9491-def055f7031f" />
 *Caption: Main dashboard overview.*
 
-![products.png](<img width="1351" height="639" alt="products" src="https://github.com/user-attachments/assets/4032fcaf-16d8-4b2f-ac94-a7d16c852967" />
-)
+<img width="1351" height="639" alt="products" src="https://github.com/user-attachments/assets/7e050e3d-463b-40d1-a9a4-8f8eb38aee2c" />
 *Caption: Product management page.*
 
-![users.png](<img width="1346" height="635" alt="users" src="https://github.com/user-attachments/assets/6951480a-ec77-4ae4-a967-567f2e68a397" />
-)
+<img width="1346" height="635" alt="users" src="https://github.com/user-attachments/assets/85577764-1875-45e2-bfe6-a417edf9a743" />
 *Caption: User management with status control (Active, Blocked).*
 
-![orders.png](<img width="1339" height="637" alt="orders" src="https://github.com/user-attachments/assets/178827d9-8199-4a47-b070-83e6fc7d8a7b" />
-)
+<img width="1339" height="637" alt="orders" src="https://github.com/user-attachments/assets/a48cc68a-dfac-4e1e-92de-cbec130b0294" />
 *Caption: Order processing and status tracking.*
+
+
 
 ## Core Features
 
