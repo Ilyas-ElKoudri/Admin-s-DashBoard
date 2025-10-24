@@ -8,11 +8,21 @@ This application provides a comprehensive management interface for e-commerce op
 
 ## 📸 Screenshots
 
-![dashboard.png](https...)
+![dashboard.png](<img width="1350" height="636" alt="dashboard" src="https://github.com/user-attachments/assets/2500b086-7238-494b-89cc-298382c6b14a" />
+)
 *Caption: Main dashboard overview.*
 
-![products.png](https...)
+![products.png](<img width="1351" height="639" alt="products" src="https://github.com/user-attachments/assets/4032fcaf-16d8-4b2f-ac94-a7d16c852967" />
+)
 *Caption: Product management page.*
+
+![users.png](<img width="1346" height="635" alt="users" src="https://github.com/user-attachments/assets/6951480a-ec77-4ae4-a967-567f2e68a397" />
+)
+*Caption: User management with status control (Active, Blocked).*
+
+![orders.png](<img width="1339" height="637" alt="orders" src="https://github.com/user-attachments/assets/178827d9-8199-4a47-b070-83e6fc7d8a7b" />
+)
+*Caption: Order processing and status tracking.*
 
 ## Core Features
 
