@@ -6,6 +6,46 @@ Enterprise-grade administrative dashboard for e-commerce platform management, bu
 
 This application provides a comprehensive management interface for e-commerce operations, including product catalog management, user administration, order processing, and analytics. The system follows RESTful API design principles with a decoupled frontend architecture.
 
+## 📸 Screenshots
+
+![dashboard.png](https...)
+*Caption: Main dashboard overview.*
+
+![products.png](https...)
+*Caption: Product management page.*
+
+## Core Features
+
+### Dashboard
+- Real-time statistics and analytics
+- Top-rated products display
+- Order status overview
+- Key performance indicators
+
+### Product Management
+- Full CRUD operations for products
+- Category-based organization
+- Image management
+- Pricing and inventory tracking
+- Rating system
+
+### User Management
+- User account administration
+- Status management (Active, Blocked, Restricted)
+- Profile management
+- Activity tracking
+
+### Order Management
+- Order processing and tracking
+- Status management (Pending, Confirmed, Delivered)
+- Order statistics and reporting
+
+### Admin Settings
+- Profile management
+- Security settings
+- Theme customization (Dark/Light mode)
+- System preferences
+
 ## Architecture
 
 ### Technology Stack
@@ -96,38 +136,6 @@ Admin-Dashboard/
    ```bash
    # Open index.html in your browser
    ```
-
-## Core Features
-
-### Dashboard
-- Real-time statistics and analytics
-- Top-rated products display
-- Order status overview
-- Key performance indicators
-
-### Product Management
-- Full CRUD operations for products
-- Category-based organization
-- Image management
-- Pricing and inventory tracking
-- Rating system
-
-### User Management
-- User account administration
-- Status management (Active, Blocked, Restricted)
-- Profile management
-- Activity tracking
-
-### Order Management
-- Order processing and tracking
-- Status management (Pending, Confirmed, Delivered)
-- Order statistics and reporting
-
-### Admin Settings
-- Profile management
-- Security settings
-- Theme customization (Dark/Light mode)
-- System preferences
 
 ## API Documentation
 
